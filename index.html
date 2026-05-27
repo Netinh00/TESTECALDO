@@ -1,315 +1,815 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bruna Caldos – Sabor que Aquece</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  :root {
-    --marrom: #2a1005;
-    --marrom-medio: #3d1a08;
-    --laranja: #e05a00;
-    --laranja-claro: #f28c38;
-    --creme: #f5e6c8;
-    --dourado: #d4960a;
-  }
-  body { background:var(--marrom); font-family:'Montserrat',sans-serif; color:var(--creme); overflow-x:hidden; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruna Caldos – Sabor que Aquece</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --marrom: #2a1005;
+            --marrom-medio: #3d1a08;
+            --laranja: #e05a00;
+            --laranja-claro: #f28c38;
+            --creme: #f5e6c8;
+            --dourado: #d4960a;
+        }
+        body {
+            background: var(--marrom);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--creme);
+            overflow-x: hidden;
+        }
 
-  /* PARTÍCULAS */
-  .particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
-  .particle { position:absolute; bottom:-20px; border-radius:50%; background:rgba(242,140,56,0.12); animation:floatUp linear infinite; }
-  @keyframes floatUp {
-    0%   { transform:translateY(0) scale(1); opacity:0; }
-    10%  { opacity:1; }
-    90%  { opacity:0.3; }
-    100% { transform:translateY(-100vh) scale(2.5); opacity:0; }
-  }
+        /* PARTÍCULAS */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            bottom: -20px;
+            border-radius: 50%;
+            background: rgba(242, 140, 56, 0.12);
+            animation: floatUp linear infinite;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) scale(2.5);
+                opacity: 0;
+            }
+        }
 
-  /* HEADER */
-  header {
-    position:relative; z-index:10; text-align:center;
-    padding:0 1rem 2.5rem;
-    border-bottom:2px solid var(--laranja);
-    overflow:hidden;
-    min-height:340px;
-  }
+        /* HEADER */
+        header {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 4rem 1rem 3rem;
+            border-bottom: 2px solid var(--laranja);
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .header-video {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .header-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0.45;
+        }
+        .header-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(to bottom,
+                    rgba(30, 8, 0, 0.5) 0%,
+                    rgba(42, 16, 5, 0.75) 55%,
+                    rgba(42, 16, 5, 1) 100%);
+        }
+        header>*:not(.header-video):not(.header-overlay) {
+            position: relative;
+            z-index: 2;
+        }
 
-  /* VÍDEO DE FUNDO */
-  .header-video {
-    position:absolute; inset:0; z-index:0;
-    overflow:hidden;
-  }
-  .header-video video {
-    width:100%; height:100%;
-    object-fit:cover;
-    object-position:center;
-    opacity:0.45;
-  }
-  .header-overlay {
-    position:absolute; inset:0; z-index:1;
-    background:linear-gradient(to bottom, rgba(30,8,0,0.5) 0%, rgba(42,16,5,0.75) 55%, rgba(42,16,5,1) 100%);
-  }
-  header > *:not(.header-video):not(.header-overlay) {
-    position:relative; z-index:2;
-  }
+        /* TÍTULO */
+        .title-bruna {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3.5rem, 12vw, 7rem);
+            color: var(--creme);
+            line-height: 0.9;
+            text-shadow: 0 0 40px rgba(224, 90, 0, 0.9), 3px 3px 0 #1a0800;
+            animation: slideDown 0.9s ease both;
+            margin-top: 0;
+        }
+        .title-bruna span {
+            color: var(--laranja);
+        }
+        .tagline {
+            letter-spacing: 0.35em;
+            font-size: 0.8rem;
+            color: var(--dourado);
+            text-transform: uppercase;
+            margin-top: 0.8rem;
+            animation: fadeIn 1.5s ease both;
+        }
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
 
-  /* LOGO */
-  .logo-wrap { padding-top:2rem; display:inline-block; position:relative; margin-bottom:0.8rem; }
-  .logo-ring {
-    display:inline-block; width:170px; height:170px; border-radius:50%;
-    border:4px solid var(--laranja-claro); overflow:hidden;
-    box-shadow:0 0 40px rgba(224,90,0,0.6),0 0 80px rgba(224,90,0,0.25);
-    animation:pulse 3s ease-in-out infinite;
-  }
-  .logo-ring img { width:100%; height:100%; object-fit:cover; }
-  @keyframes pulse {
-    0%,100%{box-shadow:0 0 40px rgba(224,90,0,0.5),0 0 80px rgba(224,90,0,0.2)}
-    50%{box-shadow:0 0 70px rgba(224,90,0,0.9),0 0 130px rgba(224,90,0,0.5)}
-  }
+        /* SEÇÕES */
+        .section {
+            position: relative;
+            z-index: 10;
+            padding: 2.5rem 1.5rem;
+        }
+        .section-title {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--laranja-claro);
+            margin-bottom: 0.5rem;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .divider span {
+            color: var(--laranja);
+            font-size: 1.2rem;
+        }
+        .divider hr {
+            flex: 1;
+            max-width: 120px;
+            border: none;
+            border-top: 1px solid var(--laranja);
+            opacity: 0.5;
+        }
 
-  /* STEAM */
-  .steam-wrap { position:absolute; top:-40px; left:50%; transform:translateX(-50%); display:flex; gap:12px; pointer-events:none; }
-  .steam { width:7px; height:50px; border-radius:4px; background:linear-gradient(to top,rgba(255,255,255,0.22),transparent); animation:steam 2.5s ease-in-out infinite; transform-origin:bottom center; }
-  .steam:nth-child(2){animation-delay:0.4s}
-  .steam:nth-child(3){animation-delay:0.8s}
-  @keyframes steam { 0%{opacity:0;transform:scaleX(1) translateY(0)} 30%{opacity:0.7} 100%{opacity:0;transform:scaleX(2.5) translateY(-50px)} }
+        /* CARDS DE CARDÁPIO (somente vitrine) */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .card {
+            background: var(--marrom-medio);
+            border: 1px solid rgba(224, 90, 0, 0.3);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            animation: cardIn 0.6s ease both;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--laranja);
+            box-shadow: 0 14px 35px rgba(224, 90, 0, 0.3);
+        }
+        .card:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--creme);
+            margin-bottom: 0.4rem;
+        }
+        .card p {
+            font-size: 0.84rem;
+            color: rgba(245, 230, 200, 0.65);
+            line-height: 1.6;
+        }
+        .card-price {
+            display: inline-block;
+            margin-top: 1rem;
+            background: var(--laranja);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 0.4rem 1.4rem;
+            border-radius: 20px;
+        }
 
-  /* TÍTULO */
-  .title-bruna {
-    font-family:'Dancing Script',cursive;
-    font-size:clamp(3.8rem,14vw,7.5rem);
-    color:var(--creme);
-    line-height:0.9;
-    text-shadow:0 0 40px rgba(224,90,0,0.9), 3px 3px 0 #1a0800;
-    animation:slideDown 0.9s ease both;
-  }
-  .title-bruna span { color:var(--laranja); }
-  .tagline {
-    letter-spacing:0.35em; font-size:0.8rem; color:var(--dourado);
-    text-transform:uppercase; margin-top:0.5rem; animation:fadeIn 1.5s ease both;
-  }
-  @keyframes slideDown { from{opacity:0;transform:translateY(-30px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+        /* FORMULÁRIO DE PEDIDO */
+        #montar-pedido {
+            background: rgba(61, 26, 8, 0.4);
+            border-radius: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 2rem 2.5rem;
+            border: 1px solid rgba(224, 90, 0, 0.25);
+        }
+        .form-row {
+            margin-bottom: 1.8rem;
+        }
+        .form-row h3 {
+            font-size: 1.1rem;
+            color: var(--creme);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px dashed rgba(224, 90, 0, 0.4);
+            padding-bottom: 0.5rem;
+        }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--marrom-medio);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 0.7rem;
+            border: 1px solid rgba(224, 90, 0, 0.15);
+        }
+        .quantity-selector .info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .quantity-selector .info .emoji {
+            font-size: 1.8rem;
+        }
+        .quantity-selector .info .name {
+            font-weight: 700;
+            color: var(--creme);
+        }
+        .quantity-selector .info .price {
+            font-size: 0.8rem;
+            color: rgba(245, 230, 200, 0.5);
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .qty-btn {
+            background: var(--laranja);
+            border: none;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        .qty-btn:hover {
+            background: var(--laranja-claro);
+            transform: scale(1.08);
+        }
+        .qty-btn:active {
+            transform: scale(0.95);
+        }
+        .qty-display {
+            font-size: 1.2rem;
+            font-weight: 700;
+            min-width: 28px;
+            text-align: center;
+            color: var(--creme);
+        }
 
-  /* SEÇÃO VÍDEO */
-  .video-section { position:relative; z-index:10; text-align:center; padding:2rem 1.5rem 1.5rem; }
-  .divider { display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:1.5rem; }
-  .divider span { color:var(--laranja); font-size:1.2rem; }
-  .divider hr { flex:1; max-width:120px; border:none; border-top:1px solid var(--laranja); opacity:0.5; }
+        /* INGREDIENTES EXTRAS */
+        .ingredientes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.7rem;
+        }
+        .ingrediente-opt {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--marrom-medio);
+            border-radius: 10px;
+            padding: 0.7rem 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
+            user-select: none;
+        }
+        .ingrediente-opt:hover {
+            border-color: var(--laranja);
+        }
+        .ingrediente-opt input[type="checkbox"] {
+            display: none;
+        }
+        .ingrediente-opt .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--laranja-claro);
+            border-radius: 4px;
+            position: relative;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .ingrediente-opt input:checked+.checkmark {
+            background: var(--laranja);
+            border-color: var(--laranja);
+        }
+        .ingrediente-opt input:checked+.checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .ingrediente-opt .label {
+            color: var(--creme);
+            font-size: 0.9rem;
+        }
 
-  .video-wrap {
-    display:inline-block;
-    border-radius:20px; overflow:hidden;
-    border:3px solid var(--laranja);
-    box-shadow:0 0 40px rgba(224,90,0,0.45);
-    max-width:420px; width:100%;
-  }
-  .video-wrap video {
-    display:block; width:100%;
-    max-height:300px;
-    object-fit:cover;
-  }
+        /* CAMPOS DE TEXTO */
+        .text-input {
+            width: 100%;
+            background: var(--marrom-medio);
+            border: 1px solid rgba(224, 90, 0, 0.3);
+            border-radius: 12px;
+            padding: 0.9rem 1.2rem;
+            color: var(--creme);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: 0.2s;
+        }
+        .text-input:focus {
+            outline: none;
+            border-color: var(--laranja);
+            box-shadow: 0 0 15px rgba(224, 90, 0, 0.25);
+        }
+        .text-input::placeholder {
+            color: rgba(245, 230, 200, 0.35);
+        }
 
-  /* CARDÁPIO */
-  .section { position:relative; z-index:10; padding:2.5rem 1.5rem; }
-  .section-title {
-    text-align:center; font-family:'Dancing Script',cursive;
-    font-size:clamp(2rem,5vw,3rem); color:var(--laranja-claro); margin-bottom:0.5rem;
-  }
-  .cards {
-    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:1.5rem; max-width:700px; margin:0 auto;
-  }
-  .card {
-    background:var(--marrom-medio); border:1px solid rgba(224,90,0,0.3);
-    border-radius:16px; padding:2rem 1.5rem; text-align:center;
-    transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;
-    animation:cardIn 0.6s ease both;
-  }
-  .card:hover { transform:translateY(-8px); border-color:var(--laranja); box-shadow:0 14px 35px rgba(224,90,0,0.3); }
-  .card:nth-child(2){animation-delay:0.15s}
-  @keyframes cardIn { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-  .card-icon { font-size:3rem; margin-bottom:0.6rem; display:block; }
-  .card h3 { font-size:1.2rem; font-weight:700; color:var(--creme); margin-bottom:0.4rem; }
-  .card p { font-size:0.84rem; color:rgba(245,230,200,0.65); line-height:1.6; }
-  .card-price {
-    display:inline-block; margin-top:1rem;
-    background:var(--laranja); color:#fff;
-    font-weight:700; font-size:1.1rem;
-    padding:0.4rem 1.4rem; border-radius:20px;
-  }
+        /* BOTÃO PRINCIPAL */
+        .btn-pedir {
+            display: block;
+            width: 100%;
+            background: #25d366;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.45);
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: wppBounce 3s ease-in-out infinite;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .btn-pedir:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 16px 44px rgba(37, 211, 102, 0.6);
+        }
+        .btn-pedir svg {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+        }
+        @keyframes wppBounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
 
-  /* BANNER PROMO */
-  .promo-banner {
-    position:relative; z-index:10;
-    background:linear-gradient(135deg,#6b2200,#3d1a08);
-    border-top:2px solid var(--laranja); border-bottom:2px solid var(--laranja);
-    text-align:center; padding:2rem 1.5rem;
-  }
-  .promo-banner h2 { font-family:'Dancing Script',cursive; font-size:clamp(1.8rem,5vw,3rem); color:var(--creme); margin-bottom:0.5rem; }
-  .promo-banner p { font-size:0.95rem; color:var(--laranja-claro); line-height:1.8; }
-  .promo-banner strong { color:var(--creme); font-size:1.05rem; }
-  .promo-badge {
-    display:inline-block; background:var(--dourado); color:var(--marrom);
-    font-weight:700; font-size:0.8rem; padding:0.3rem 1.2rem; border-radius:20px;
-    margin-bottom:1rem; text-transform:uppercase; letter-spacing:0.1em;
-    animation:badgePulse 2s ease-in-out infinite;
-  }
-  @keyframes badgePulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+        /* BANNER PROMO */
+        .promo-banner {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(135deg, #6b2200, #3d1a08);
+            border-top: 2px solid var(--laranja);
+            border-bottom: 2px solid var(--laranja);
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+        .promo-banner h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            color: var(--creme);
+            margin-bottom: 0.5rem;
+        }
+        .promo-banner p {
+            font-size: 0.95rem;
+            color: var(--laranja-claro);
+            line-height: 1.8;
+        }
+        .promo-banner strong {
+            color: var(--creme);
+            font-size: 1.05rem;
+        }
+        .promo-badge {
+            display: inline-block;
+            background: var(--dourado);
+            color: var(--marrom);
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.3rem 1.2rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+        @keyframes badgePulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.06);
+            }
+        }
 
-  .juca-tag {
-    display:inline-block; margin-top:0.8rem;
-    background:rgba(224,90,0,0.2); border:1px solid var(--laranja);
-    border-radius:12px; padding:0.5rem 1.4rem;
-    font-size:0.9rem; font-weight:700; color:var(--laranja-claro);
-    letter-spacing:0.05em;
-  }
+        .juca-tag {
+            display: inline-block;
+            margin-top: 0.8rem;
+            background: rgba(224, 90, 0, 0.2);
+            border: 1px solid var(--laranja);
+            border-radius: 12px;
+            padding: 0.5rem 1.4rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--laranja-claro);
+            letter-spacing: 0.05em;
+        }
 
-  /* WHATSAPP */
-  .wpp-section { position:relative; z-index:10; text-align:center; padding:3rem 1.5rem 2rem; }
-  .wpp-section h2 { font-family:'Dancing Script',cursive; font-size:clamp(1.8rem,5vw,2.8rem); color:var(--creme); margin-bottom:0.5rem; }
-  .wpp-section p { font-size:0.9rem; color:rgba(245,230,200,0.6); margin-bottom:2rem; }
-  .btn-wpp {
-    display:inline-flex; align-items:center; gap:14px;
-    background:#25d366; color:#fff;
-    font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.15rem;
-    text-decoration:none; padding:1.1rem 2.8rem; border-radius:50px;
-    box-shadow:0 8px 30px rgba(37,211,102,0.4);
-    transition:transform 0.2s,box-shadow 0.2s;
-    animation:wppBounce 3s ease-in-out infinite;
-  }
-  .btn-wpp:hover { transform:translateY(-3px) scale(1.04); box-shadow:0 16px 44px rgba(37,211,102,0.6); }
-  @keyframes wppBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-  .btn-wpp svg { width:30px; height:30px; flex-shrink:0; }
+        /* FLOATING WPP */
+        .float-wpp {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            background: #25d366;
+            border-radius: 50%;
+            width: 62px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55);
+            animation: floatBtn 2.5s ease-in-out infinite;
+            text-decoration: none;
+        }
+        .float-wpp:hover {
+            transform: scale(1.14) !important;
+        }
+        @keyframes floatBtn {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-7px);
+            }
+        }
+        .float-wpp svg {
+            width: 34px;
+            height: 34px;
+        }
 
-  /* FLOATING WPP */
-  .float-wpp {
-    position:fixed; bottom:24px; right:24px; z-index:999;
-    background:#25d366; border-radius:50%; width:62px; height:62px;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow:0 6px 24px rgba(37,211,102,0.55);
-    animation:floatBtn 2.5s ease-in-out infinite;
-    text-decoration:none;
-  }
-  .float-wpp:hover { transform:scale(1.14) !important; }
-  @keyframes floatBtn { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-  .float-wpp svg { width:34px; height:34px; }
+        /* FOOTER */
+        footer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(224, 90, 0, 0.3);
+            font-size: 0.78rem;
+            color: rgba(245, 230, 200, 0.4);
+        }
+        footer span {
+            color: var(--laranja);
+        }
 
-  /* FOOTER */
-  footer {
-    position:relative; z-index:10; text-align:center;
-    padding:1.5rem; border-top:1px solid rgba(224,90,0,0.3);
-    font-size:0.78rem; color:rgba(245,230,200,0.4);
-  }
-  footer span { color:var(--laranja); }
-</style>
+        /* RESPONSIVO */
+        @media (max-width:500px) {
+            .quantity-selector {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            .quantity-control {
+                align-self: flex-end;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="particles" id="particles"></div>
+    <div class="particles" id="particles"></div>
 
-<!-- HEADER com vídeo de fundo -->
-<header>
-  <div class="header-video">
-    <video autoplay muted loop playsinline>
-      <source src="caldo.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="header-overlay"></div>
+    <!-- HEADER com vídeo de fundo (SEM LOGO) -->
+    <header>
+        <div class="header-video">
+            <video autoplay muted loop playsinline>
+                <source src="caldo.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="header-overlay"></div>
 
-  <div class="logo-wrap">
-    <div class="logo-ring">
-      <img src="Image_27_de_mai__de_2026__08_42_42.png" alt="Logo Bruna Caldos"
-        onerror="this.style.display='none';this.parentElement.style.background='#4a1e08';this.parentElement.innerHTML='<div style=\'font-family:Dancing Script,cursive;font-size:4rem;color:#e05a00;line-height:170px;\'>B</div>'">
+        <div class="title-bruna"><span>Bruna</span> Caldos</div>
+        <p class="tagline">✦ Sabor que Aquece ✦</p>
+    </header>
+
+    <!-- CARDÁPIO (vitrine) -->
+    <section class="section">
+        <h2 class="section-title">Nosso Cardápio</h2>
+        <div class="divider"><hr><span>♥</span><hr></div>
+        <div class="cards">
+            <div class="card">
+                <span class="card-icon">🍗</span>
+                <h3>Caldo de Frango</h3>
+                <p>Frango desfiado na hora, legumes frescos e temperos especiais da Bruna. Cremoso e reconfortante!</p>
+                <span class="card-price">R$ 11,99</span>
+            </div>
+            <div class="card">
+                <span class="card-icon">🥩</span>
+                <h3>Caldo de Kenga</h3>
+                <p>Carne de kenga cozida no capricho, bem temperada e cheia de sabor. Pura tradição!</p>
+                <span class="card-price">R$ 11,99</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MONTE SEU PEDIDO -->
+    <section class="section">
+        <h2 class="section-title">Monte seu Pedido</h2>
+        <div class="divider"><hr><span>♥</span><hr></div>
+        <div id="montar-pedido">
+
+            <!-- Quantidades -->
+            <div class="form-row">
+                <h3>🍲 Escolha seus caldos</h3>
+
+                <div class="quantity-selector" data-item="frango" data-price="11.99">
+                    <div class="info">
+                        <span class="emoji">🍗</span>
+                        <div>
+                            <div class="name">Caldo de Frango</div>
+                            <div class="price">R$ 11,99 cada</div>
+                        </div>
+                    </div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                        <span class="qty-display">0</span>
+                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                    </div>
+                </div>
+
+                <div class="quantity-selector" data-item="kenga" data-price="11.99">
+                    <div class="info">
+                        <span class="emoji">🥩</span>
+                        <div>
+                            <div class="name">Caldo de Kenga</div>
+                            <div class="price">R$ 11,99 cada</div>
+                        </div>
+                    </div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+                        <span class="qty-display">0</span>
+                        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ingredientes extras -->
+            <div class="form-row">
+                <h3>🥕 Ingredientes extras (opcional)</h3>
+                <div class="ingredientes-grid" id="ingredientes-extras">
+                    <label class="ingrediente-opt">
+                        <input type="checkbox" value="Mandioca">
+                        <span class="checkmark"></span>
+                        <span class="label">Mandioca</span>
+                    </label>
+                    <label class="ingrediente-opt">
+                        <input type="checkbox" value="Batata">
+                        <span class="checkmark"></span>
+                        <span class="label">Batata</span>
+                    </label>
+                    <label class="ingrediente-opt">
+                        <input type="checkbox" value="Legumes adicionais">
+                        <span class="checkmark"></span>
+                        <span class="label">Legumes adicionais</span>
+                    </label>
+                    <label class="ingrediente-opt">
+                        <input type="checkbox" value="Pimenta">
+                        <span class="checkmark"></span>
+                        <span class="label">Pimenta</span>
+                    </label>
+                    <label class="ingrediente-opt">
+                        <input type="checkbox" value="Queijo">
+                        <span class="checkmark"></span>
+                        <span class="label">Queijo</span>
+                    </label>
+                    <label class="ingrediente-opt">
+                        <input type="checkbox" value="Cebolinha">
+                        <span class="checkmark"></span>
+                        <span class="label">Cebolinha</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Observações -->
+            <div class="form-row">
+                <h3>📝 Observações</h3>
+                <textarea class="text-input" id="observacoes" rows="2" placeholder="Alguma restrição ou pedido especial?"></textarea>
+            </div>
+
+            <!-- Endereço -->
+            <div class="form-row">
+                <h3>📍 Endereço de entrega</h3>
+                <input type="text" class="text-input" id="endereco" placeholder="Rua, número, bairro e ponto de referência">
+            </div>
+
+            <!-- Nome -->
+            <div class="form-row">
+                <h3>👤 Seu nome</h3>
+                <input type="text" class="text-input" id="nomeCliente" placeholder="Como prefere ser chamado(a)?">
+            </div>
+
+            <!-- Botão -->
+            <button class="btn-pedir" onclick="enviarPedidoWhatsApp()">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2C8.268 2 2 8.268 2 16c0 2.46.658 4.76 1.808 6.747L2 30l7.437-1.783A13.923 13.923 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Z" fill="white"/>
+                    <path d="M22.5 19.5c-.3-.15-1.77-.87-2.045-.97-.275-.1-.475-.15-.675.15-.2.3-.775.97-.95 1.17-.175.2-.35.225-.65.075-.3-.15-1.265-.465-2.41-1.48-.89-.79-1.49-1.765-1.665-2.065-.175-.3-.018-.46.132-.61.135-.133.3-.346.45-.52.15-.173.2-.298.3-.498.1-.2.05-.374-.025-.524-.075-.15-.675-1.63-.925-2.23-.243-.585-.49-.505-.675-.515-.175-.008-.375-.01-.575-.01-.2 0-.525.075-.8.375s-1.05 1.025-1.05 2.5 1.075 2.9 1.225 3.1c.15.2 2.11 3.225 5.115 4.52.715.31 1.273.495 1.708.635.717.228 1.37.196 1.886.119.575-.086 1.77-.723 2.02-1.423.25-.7.25-1.3.175-1.424-.075-.124-.275-.199-.575-.349Z" fill="#25d366"/>
+                </svg>
+                Fazer Pedido pelo WhatsApp
+            </button>
+        </div>
+    </section>
+
+    <!-- BANNER PROMO -->
+    <div class="promo-banner">
+        <span class="promo-badge">🛵 Oferta Especial</span>
+        <h2>Entrega GRÁTIS!</h2>
+        <p>Peça a partir de <strong>2 caldos</strong> e ganhe entrega gratuita</p>
+        <div class="juca-tag">📍 Apenas no Juca Rosa</div>
     </div>
-    <div class="steam-wrap">
-      <div class="steam"></div><div class="steam"></div><div class="steam"></div>
-    </div>
-  </div>
 
-  <div class="title-bruna"><span>Bruna</span> Caldos</div>
-  <p class="tagline">✦ Sabor que Aquece ✦</p>
-</header>
+    <footer>
+        Feito com <span>♥</span> pela Bruna Caldos &mdash; <span>Sabor que Aquece</span>
+    </footer>
 
-<!-- VÍDEO DO CALDO (destaque) -->
-<section class="video-section">
-  <div class="divider"><hr><span>♥</span><hr></div>
-  <div class="video-wrap">
-    <video autoplay muted loop playsinline>
-      <source src="caldo.mp4" type="video/mp4">
-    </video>
-  </div>
-</section>
+    <!-- BOTÃO FLUTUANTE (acesso rápido) -->
+    <a class="float-wpp" href="https://wa.me/5573982008715?text=Oi%20Bruna!%20Quero%20fazer%20um%20pedido%20%F0%9F%8D%B2" target="_blank" rel="noopener" title="Chamar no WhatsApp">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.46.658 4.76 1.808 6.747L2 30l7.437-1.783A13.923 13.923 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Z" fill="white"/>
+            <path d="M22.5 19.5c-.3-.15-1.77-.87-2.045-.97-.275-.1-.475-.15-.675.15-.2.3-.775.97-.95 1.17-.175.2-.35.225-.65.075-.3-.15-1.265-.465-2.41-1.48-.89-.79-1.49-1.765-1.665-2.065-.175-.3-.018-.46.132-.61.135-.133.3-.346.45-.52.15-.173.2-.298.3-.498.1-.2.05-.374-.025-.524-.075-.15-.675-1.63-.925-2.23-.243-.585-.49-.505-.675-.515-.175-.008-.375-.01-.575-.01-.2 0-.525.075-.8.375s-1.05 1.025-1.05 2.5 1.075 2.9 1.225 3.1c.15.2 2.11 3.225 5.115 4.52.715.31 1.273.495 1.708.635.717.228 1.37.196 1.886.119.575-.086 1.77-.723 2.02-1.423.25-.7.25-1.3.175-1.424-.075-.124-.275-.199-.575-.349Z" fill="#25d366"/>
+        </svg>
+    </a>
 
-<!-- CARDÁPIO -->
-<section class="section">
-  <h2 class="section-title">Nosso Cardápio</h2>
-  <div class="divider"><hr><span>♥</span><hr></div>
-  <div class="cards">
-    <div class="card">
-      <span class="card-icon">🍗</span>
-      <h3>Caldo de Frango</h3>
-      <p>Frango desfiado na hora, legumes frescos e temperos especiais da Bruna. Cremoso e reconfortante!</p>
-      <span class="card-price">R$ 11,99</span>
-    </div>
-    <div class="card">
-      <span class="card-icon">🥩</span>
-      <h3>Caldo de Kenga</h3>
-      <p>Carne de kenga cozida no capricho, bem temperada e cheia de sabor. Pura tradição!</p>
-      <span class="card-price">R$ 11,99</span>
-    </div>
-  </div>
-</section>
+    <script>
+        // PARTÍCULAS
+        const pContainer = document.getElementById('particles');
+        for (let i = 0; i < 28; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            const sz = 4 + Math.random() * 8;
+            p.style.width = p.style.height = sz + 'px';
+            p.style.animationDuration = (8 + Math.random() * 14) + 's';
+            p.style.animationDelay = (Math.random() * 12) + 's';
+            p.style.opacity = Math.random() * 0.35;
+            pContainer.appendChild(p);
+        }
 
-<!-- BANNER PROMO -->
-<div class="promo-banner">
-  <span class="promo-badge">🛵 Oferta Especial</span>
-  <h2>Entrega GRÁTIS!</h2>
-  <p>Peça a partir de <strong>2 caldos</strong> e ganhe entrega gratuita</p>
-  <div class="juca-tag">📍 Apenas no Juca Rosa</div>
-</div>
+        // CONTROLE DE QUANTIDADE
+        function changeQty(btn, delta) {
+            const container = btn.closest('.quantity-selector');
+            const display = container.querySelector('.qty-display');
+            let current = parseInt(display.textContent) || 0;
+            current = Math.max(0, current + delta);
+            display.textContent = current;
+        }
 
-<!-- WHATSAPP -->
-<section class="wpp-section">
-  <h2>Faça seu Pedido Agora!</h2>
-  <p>Clique abaixo e fale direto com a Bruna 🍲</p>
-  <a class="btn-wpp" href="https://wa.me/5573982008715?text=Oi%20Bruna!%20Quero%20fazer%20um%20pedido%20%F0%9F%8D%B2" target="_blank" rel="noopener">
-    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M16 2C8.268 2 2 8.268 2 16c0 2.46.658 4.76 1.808 6.747L2 30l7.437-1.783A13.923 13.923 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Z" fill="white"/>
-      <path d="M22.5 19.5c-.3-.15-1.77-.87-2.045-.97-.275-.1-.475-.15-.675.15-.2.3-.775.97-.95 1.17-.175.2-.35.225-.65.075-.3-.15-1.265-.465-2.41-1.48-.89-.79-1.49-1.765-1.665-2.065-.175-.3-.018-.46.132-.61.135-.133.3-.346.45-.52.15-.173.2-.298.3-.498.1-.2.05-.374-.025-.524-.075-.15-.675-1.63-.925-2.23-.243-.585-.49-.505-.675-.515-.175-.008-.375-.01-.575-.01-.2 0-.525.075-.8.375s-1.05 1.025-1.05 2.5 1.075 2.9 1.225 3.1c.15.2 2.11 3.225 5.115 4.52.715.31 1.273.495 1.708.635.717.228 1.37.196 1.886.119.575-.086 1.77-.723 2.02-1.423.25-.7.25-1.3.175-1.424-.075-.124-.275-.199-.575-.349Z" fill="#25d366"/>
-    </svg>
-    Pedir no WhatsApp
-  </a>
-</section>
+        // ENVIAR PEDIDO VIA WHATSAPP
+        function enviarPedidoWhatsApp() {
+            // Coletar quantidades
+            const quantidades = [];
+            const selectors = document.querySelectorAll('.quantity-selector');
+            selectors.forEach(sel => {
+                const qty = parseInt(sel.querySelector('.qty-display').textContent) || 0;
+                if (qty > 0) {
+                    const nome = sel.querySelector('.name').textContent.trim();
+                    const preco = sel.dataset.price;
+                    quantidades.push(`${qty}x ${nome} - R$ ${(qty * parseFloat(preco)).toFixed(2)}`);
+                }
+            });
 
-<footer>
-  Feito com <span>♥</span> pela Bruna Caldos &mdash; <span>Sabor que Aquece</span>
-</footer>
+            if (quantidades.length === 0) {
+                alert('Selecione pelo menos um caldo antes de fazer o pedido!');
+                return;
+            }
 
-<!-- BOTÃO FLUTUANTE -->
-<a class="float-wpp" href="https://wa.me/5573982008715?text=Oi%20Bruna!%20Quero%20fazer%20um%20pedido%20%F0%9F%8D%B2" target="_blank" rel="noopener" title="Chamar no WhatsApp">
-  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16 2C8.268 2 2 8.268 2 16c0 2.46.658 4.76 1.808 6.747L2 30l7.437-1.783A13.923 13.923 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Z" fill="white"/>
-    <path d="M22.5 19.5c-.3-.15-1.77-.87-2.045-.97-.275-.1-.475-.15-.675.15-.2.3-.775.97-.95 1.17-.175.2-.35.225-.65.075-.3-.15-1.265-.465-2.41-1.48-.89-.79-1.49-1.765-1.665-2.065-.175-.3-.018-.46.132-.61.135-.133.3-.346.45-.52.15-.173.2-.298.3-.498.1-.2.05-.374-.025-.524-.075-.15-.675-1.63-.925-2.23-.243-.585-.49-.505-.675-.515-.175-.008-.375-.01-.575-.01-.2 0-.525.075-.8.375s-1.05 1.025-1.05 2.5 1.075 2.9 1.225 3.1c.15.2 2.11 3.225 5.115 4.52.715.31 1.273.495 1.708.635.717.228 1.37.196 1.886.119.575-.086 1.77-.723 2.02-1.423.25-.7.25-1.3.175-1.424-.075-.124-.275-.199-.575-.349Z" fill="#25d366"/>
-  </svg>
-</a>
+            // Ingredientes extras
+            const checkboxes = document.querySelectorAll('#ingredientes-extras input[type="checkbox"]:checked');
+            const ingredientes = Array.from(checkboxes).map(cb => cb.value);
 
-<script>
-// PARTÍCULAS
-const pContainer = document.getElementById('particles');
-for (let i = 0; i < 28; i++) {
-  const p = document.createElement('div');
-  p.className = 'particle';
-  p.style.left = Math.random() * 100 + '%';
-  const sz = 4 + Math.random() * 8;
-  p.style.width = p.style.height = sz + 'px';
-  p.style.animationDuration = (8 + Math.random() * 14) + 's';
-  p.style.animationDelay = (Math.random() * 12) + 's';
-  p.style.opacity = Math.random() * 0.35;
-  pContainer.appendChild(p);
-}
-</script>
+            // Observações
+            const obs = document.getElementById('observacoes').value.trim();
+
+            // Endereço
+            const endereco = document.getElementById('endereco').value.trim();
+            if (!endereco) {
+                alert('Por favor, informe o endereço de entrega.');
+                return;
+            }
+
+            // Nome
+            const nome = document.getElementById('nomeCliente').value.trim() || 'Cliente';
+
+            // Montar mensagem
+            let mensagem = `Olá Bruna! 🍲\n\n*Pedido de ${nome}:*\n`;
+            mensagem += quantidades.join('\n');
+            if (ingredientes.length > 0) {
+                mensagem += '\n\n*Ingredientes extras:* ' + ingredientes.join(', ');
+            }
+            if (obs) {
+                mensagem += '\n\n*Observações:* ' + obs;
+            }
+            mensagem += '\n\n*Endereço:* ' + endereco;
+            mensagem += '\n\n📍 *Juca Rosa*';
+
+            // Total
+            let total = 0;
+            selectors.forEach(sel => {
+                const qty = parseInt(sel.querySelector('.qty-display').textContent) || 0;
+                total += qty * parseFloat(sel.dataset.price);
+            });
+            mensagem += '\n\n💰 *Total: R$ ' + total.toFixed(2) + '*';
+
+            if (total >= 23.98) {
+                mensagem += '\n🛵 *Entrega GRÁTIS!*';
+            }
+
+            // Codificar e redirecionar
+            const url = 'https://wa.me/5573982008715?text=' + encodeURIComponent(mensagem);
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
