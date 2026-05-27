@@ -340,6 +340,14 @@
         .text-input::placeholder {
             color: rgba(245, 230, 200, 0.35);
         }
+        .input-example {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: rgba(245, 230, 200, 0.45);
+            font-style: italic;
+            padding-left: 0.3rem;
+        }
 
         /* BOTÃO PRINCIPAL */
         .btn-pedir {
@@ -382,67 +390,6 @@
             50% {
                 transform: translateY(-6px);
             }
-        }
-
-        /* BANNER PROMO */
-        .promo-banner {
-            position: relative;
-            z-index: 10;
-            background: linear-gradient(135deg, #6b2200, #3d1a08);
-            border-top: 2px solid var(--laranja);
-            border-bottom: 2px solid var(--laranja);
-            text-align: center;
-            padding: 2rem 1.5rem;
-        }
-        .promo-banner h2 {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(1.8rem, 5vw, 3rem);
-            color: var(--creme);
-            margin-bottom: 0.5rem;
-        }
-        .promo-banner p {
-            font-size: 0.95rem;
-            color: var(--laranja-claro);
-            line-height: 1.8;
-        }
-        .promo-banner strong {
-            color: var(--creme);
-            font-size: 1.05rem;
-        }
-        .promo-badge {
-            display: inline-block;
-            background: var(--dourado);
-            color: var(--marrom);
-            font-weight: 700;
-            font-size: 0.8rem;
-            padding: 0.3rem 1.2rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            animation: badgePulse 2s ease-in-out infinite;
-        }
-        @keyframes badgePulse {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.06);
-            }
-        }
-
-        .juca-tag {
-            display: inline-block;
-            margin-top: 0.8rem;
-            background: rgba(224, 90, 0, 0.2);
-            border: 1px solid var(--laranja);
-            border-radius: 12px;
-            padding: 0.5rem 1.4rem;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--laranja-claro);
-            letter-spacing: 0.05em;
         }
 
         /* FLOATING WPP */
@@ -588,6 +535,7 @@
             <div class="form-row">
                 <h3>📍 Endereço de entrega</h3>
                 <input type="text" class="text-input" id="endereco" placeholder="Rua, número, bairro e ponto de referência">
+                <span class="input-example">Exemplo: Rua das Acácias, 45, Juca Rosa, perto da padaria</span>
             </div>
 
             <!-- Nome -->
@@ -606,14 +554,6 @@
             </button>
         </div>
     </section>
-
-    <!-- BANNER PROMO -->
-    <div class="promo-banner">
-        <span class="promo-badge">🛵 Oferta Especial</span>
-        <h2>Entrega GRÁTIS!</h2>
-        <p>Peça a partir de <strong>2 caldos</strong> e ganhe entrega gratuita</p>
-        <div class="juca-tag">📍 Apenas no Juca Rosa</div>
-    </div>
 
     <footer>
         Feito com <span>♥</span> pela Bruna Caldos &mdash; <span>Sabor que Aquece</span>
@@ -685,6 +625,7 @@
             mensagem += quantidades.join('\n');
 
             mensagem += '\n\n*Endereço:* ' + endereco;
+            mensagem += '\n\n📍 *Juca Rosa*';
 
             // Total
             let total = 0;
@@ -693,10 +634,6 @@
                 total += qty * parseFloat(sel.dataset.price);
             });
             mensagem += '\n\n💰 *Total: R$ ' + total.toFixed(2) + '*';
-
-            if (total >= 23.98) {
-                mensagem += '\n🛵 *Entrega GRÁTIS!*';
-            }
 
             // Codificar e redirecionar
             const url = 'https://wa.me/5573982008715?text=' + encodeURIComponent(mensagem);
