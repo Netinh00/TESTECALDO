@@ -173,7 +173,7 @@
             opacity: 0.5;
         }
 
-        /* CARDS DE CARDÁPIO (somente vitrine) */
+        /* CARDS DE CARDÁPIO (vitrine) */
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -317,58 +317,6 @@
             min-width: 28px;
             text-align: center;
             color: var(--creme);
-        }
-
-        /* INGREDIENTES EXTRAS */
-        .ingredientes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 0.7rem;
-        }
-        .ingrediente-opt {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--marrom-medio);
-            border-radius: 10px;
-            padding: 0.7rem 1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            border: 1px solid transparent;
-            user-select: none;
-        }
-        .ingrediente-opt:hover {
-            border-color: var(--laranja);
-        }
-        .ingrediente-opt input[type="checkbox"] {
-            display: none;
-        }
-        .ingrediente-opt .checkmark {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--laranja-claro);
-            border-radius: 4px;
-            position: relative;
-            transition: 0.2s;
-            flex-shrink: 0;
-        }
-        .ingrediente-opt input:checked+.checkmark {
-            background: var(--laranja);
-            border-color: var(--laranja);
-        }
-        .ingrediente-opt input:checked+.checkmark::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-        .ingrediente-opt .label {
-            color: var(--creme);
-            font-size: 0.9rem;
         }
 
         /* CAMPOS DE TEXTO */
@@ -636,49 +584,6 @@
                 </div>
             </div>
 
-            <!-- Ingredientes extras -->
-            <div class="form-row">
-                <h3>🥕 Ingredientes extras (opcional)</h3>
-                <div class="ingredientes-grid" id="ingredientes-extras">
-                    <label class="ingrediente-opt">
-                        <input type="checkbox" value="Mandioca">
-                        <span class="checkmark"></span>
-                        <span class="label">Mandioca</span>
-                    </label>
-                    <label class="ingrediente-opt">
-                        <input type="checkbox" value="Batata">
-                        <span class="checkmark"></span>
-                        <span class="label">Batata</span>
-                    </label>
-                    <label class="ingrediente-opt">
-                        <input type="checkbox" value="Legumes adicionais">
-                        <span class="checkmark"></span>
-                        <span class="label">Legumes adicionais</span>
-                    </label>
-                    <label class="ingrediente-opt">
-                        <input type="checkbox" value="Pimenta">
-                        <span class="checkmark"></span>
-                        <span class="label">Pimenta</span>
-                    </label>
-                    <label class="ingrediente-opt">
-                        <input type="checkbox" value="Queijo">
-                        <span class="checkmark"></span>
-                        <span class="label">Queijo</span>
-                    </label>
-                    <label class="ingrediente-opt">
-                        <input type="checkbox" value="Cebolinha">
-                        <span class="checkmark"></span>
-                        <span class="label">Cebolinha</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Observações -->
-            <div class="form-row">
-                <h3>📝 Observações</h3>
-                <textarea class="text-input" id="observacoes" rows="2" placeholder="Alguma restrição ou pedido especial?"></textarea>
-            </div>
-
             <!-- Endereço -->
             <div class="form-row">
                 <h3>📍 Endereço de entrega</h3>
@@ -765,13 +670,6 @@
                 return;
             }
 
-            // Ingredientes extras
-            const checkboxes = document.querySelectorAll('#ingredientes-extras input[type="checkbox"]:checked');
-            const ingredientes = Array.from(checkboxes).map(cb => cb.value);
-
-            // Observações
-            const obs = document.getElementById('observacoes').value.trim();
-
             // Endereço
             const endereco = document.getElementById('endereco').value.trim();
             if (!endereco) {
@@ -785,14 +683,8 @@
             // Montar mensagem
             let mensagem = `Olá Bruna! 🍲\n\n*Pedido de ${nome}:*\n`;
             mensagem += quantidades.join('\n');
-            if (ingredientes.length > 0) {
-                mensagem += '\n\n*Ingredientes extras:* ' + ingredientes.join(', ');
-            }
-            if (obs) {
-                mensagem += '\n\n*Observações:* ' + obs;
-            }
+
             mensagem += '\n\n*Endereço:* ' + endereco;
-            
 
             // Total
             let total = 0;
